@@ -11,8 +11,11 @@ bytes for the same logical object is not VCO-compatible.
 - Objects are stored as `.vco/objects/<hash>.json`.
 - Object files MAY be pretty-printed for human reading. The hash is
   always computed over the **canonical** form, not the stored form.
-- Unknown fields in an object MUST be preserved and included in
-  canonicalization. This allows forward-compatible extensions.
+
+- An object's hash is computed over its core fields only. Extension
+  fields are stored separately (see 05-extensions.md) and never
+  affect the hash. This guarantees that a client which does not
+  understand an extension can still verify and use the object.
 
 ## 2.2 Canonicalization
 
